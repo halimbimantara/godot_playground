@@ -1,1 +1,1 @@
-extends "res://State.gd"
+extends BaseState

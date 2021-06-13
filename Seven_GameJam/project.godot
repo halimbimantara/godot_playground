@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Character.gd"
 }, {
+"base": "Area2D",
+"class": "HitBox",
+"language": "GDScript",
+"path": "res://Hitbox.gd"
+}, {
+"base": "Area2D",
+"class": "HurtBox",
+"language": "GDScript",
+"path": "res://Hurtbox.gd"
+}, {
 "base": "Node2D",
 "class": "InputHandler",
 "language": "GDScript",
@@ -32,6 +42,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "BaseState": "",
 "Character": "",
+"HitBox": "",
+"HurtBox": "",
 "InputHandler": "",
 "StateMachine": ""
 }

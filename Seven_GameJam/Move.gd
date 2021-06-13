@@ -1,6 +1,9 @@
 extends BaseState
 
 func update_state(delta : float):
+	if(character.motion.y > 0):
+		emit_signal("finished", "Falling")
+	
 	if(Input.is_action_pressed("ui_left")): 
 		character.input_vector = Vector2.LEFT
 	
@@ -9,3 +12,9 @@ func update_state(delta : float):
 	
 	else:
 		character.input_vector = Vector2.ZERO
+		emit_signal("finished", "Idle")
+
+
+func handle_input(event : String):
+	if event == "jump":
+		emit_signal("finished", "Jump")

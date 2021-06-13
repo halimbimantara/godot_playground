@@ -1,30 +1,186 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://PlayerInputHandler.gd" type="Script" id=3]
 [ext_resource path="res://graphics/herochar sprites(new)/herochar_idle_anim_strip_4.png" type="Texture" id=4]
 [ext_resource path="res://Move.gd" type="Script" id=5]
+[ext_resource path="res://graphics/herochar sprites(new)/herochar_run_anim_strip_6.png" type="Texture" id=6]
+[ext_resource path="res://Falling.gd" type="Script" id=7]
+[ext_resource path="res://graphics/herochar sprites(new)/herochar_jump_down_anim_strip_3.png" type="Texture" id=8]
+[ext_resource path="res://Jump.gd" type="Script" id=9]
+[ext_resource path="res://graphics/herochar sprites(new)/herochar_jump_up_anim_strip_3.png" type="Texture" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 7 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "Idle"
-length = 0.4
+resource_name = "Falling"
+length = 0.3
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
 }
+
+[sub_resource type="Animation" id=4]
+resource_name = "Jump"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 10, 7 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 5, 7 )
 
 [node name="Player" instance=ExtResource( 1 )]
 collision_layer = 1
@@ -36,15 +192,54 @@ position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-texture = ExtResource( 4 )
+texture = ExtResource( 10 )
+hframes = 3
+frame = 1
 
 [node name="AnimationPlayer" parent="." index="2"]
-anims/Idle = SubResource( 2 )
+anims/Falling = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Jump = SubResource( 4 )
+anims/Move = SubResource( 5 )
 
-[node name="InputHandler" parent="." index="3"]
+[node name="Hitbox" parent="." index="3"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="HitArea" parent="Hitbox" index="0"]
+position = Vector2( 15, 0 )
+shape = SubResource( 7 )
+
+[node name="Hurtbox" parent="." index="4"]
+collision_mask = 0
+
+[node name="HurtArea" parent="Hurtbox" index="0"]
+shape = SubResource( 6 )
+
+[node name="InputHandler" parent="." index="5"]
 script = ExtResource( 3 )
 
 [node name="Move" type="Node2D" parent="StateMachine" index="3"]
 script = ExtResource( 5 )
 animationPlayerPath = NodePath("../../AnimationPlayer")
 characterPath = NodePath("../..")
+
+[node name="Falling" type="Node2D" parent="StateMachine" index="4"]
+script = ExtResource( 7 )
+animationPlayerPath = NodePath("../../AnimationPlayer")
+characterPath = NodePath("../..")
+
+[node name="Jump" type="Node2D" parent="StateMachine" index="5"]
+script = ExtResource( 9 )
+animationPlayerPath = NodePath("../../AnimationPlayer")
+characterPath = NodePath("../..")
+
+[node name="CoyoteTimer" type="Timer" parent="StateMachine/Jump" index="0"]
+wait_time = 0.15
+one_shot = true
+autostart = true
+
+[connection signal="state_changed" from="StateMachine" to="StateMachine/Jump" method="_on_StateMachine_state_changed"]
+
+[editable path="Hitbox"]
+[editable path="Hurtbox"]

@@ -2,7 +2,7 @@ extends Node2D
 class_name StateMachine
 
 export(String) var InitialState = "Idle"
-signal state_changed
+signal state_changed(new_state)
 var current_state : BaseState = null
 
 
@@ -28,4 +28,5 @@ func _change_state(state_name: String):
 	if update_state != null:
 		current_state.exit()
 		current_state = update_state
+		current_state.enter()
 		emit_signal("state_changed", state_name)
