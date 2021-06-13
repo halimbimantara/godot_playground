@@ -7,9 +7,6 @@
 [ext_resource path="res://Characters/Mushrun.gd" type="Script" id=5]
 [ext_resource path="res://Boxes/HitBox.tscn" type="PackedScene" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 10 )
-
 [sub_resource type="Animation" id=2]
 resource_name = "Hit"
 length = 0.5
@@ -132,15 +129,18 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
 }
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 10 )
+
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 50, 15 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 14, 6 )
 
 [sub_resource type="CapsuleShape2D" id=7]
 radius = 9.0
 height = 6.0
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 14, 6 )
 
 [node name="Mushrun" instance=ExtResource( 4 )]
 collision_layer = 4
@@ -157,16 +157,22 @@ flip_h = true
 hframes = 5
 frame = 4
 
-[node name="Collider" parent="." index="1"]
-position = Vector2( 0, 6 )
-shape = SubResource( 1 )
-
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" parent="." index="1"]
 anims/Hit = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/Run = SubResource( 4 )
 
-[node name="Senses" type="Node2D" parent="." index="3"]
+[node name="Collider" parent="." index="2"]
+position = Vector2( 0, 6 )
+shape = SubResource( 1 )
+
+[node name="IdleTimer" type="Timer" parent="." index="3"]
+wait_time = 3.0
+one_shot = true
+
+[node name="PlayerChaseTimer" type="Timer" parent="." index="4"]
+wait_time = 3.0
+one_shot = true
 
 [node name="FloorFront" type="RayCast2D" parent="Senses" index="0"]
 position = Vector2( 11, 16 )
@@ -186,22 +192,7 @@ collision_mask = 2
 position = Vector2( 60, 6 )
 shape = SubResource( 5 )
 
-[node name="IdleTimer" type="Timer" parent="." index="4"]
-wait_time = 3.0
-one_shot = true
-
-[node name="PlayerChaseTimer" type="Timer" parent="." index="5"]
-wait_time = 3.0
-one_shot = true
-
-[node name="HurtBox" parent="." index="6"]
-collision_layer = 4
-
-[node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2( 0, 1 )
-shape = SubResource( 6 )
-
-[node name="HitBox" parent="." index="7" instance=ExtResource( 6 )]
+[node name="HitBox" parent="." index="6" instance=ExtResource( 6 )]
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
@@ -209,7 +200,15 @@ position = Vector2( 0, 6 )
 rotation = 1.5708
 shape = SubResource( 7 )
 
+[node name="HurtBox" parent="." index="7"]
+collision_layer = 4
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2( 0, 1 )
+shape = SubResource( 6 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="animation_finished"]
 [connection signal="body_entered" from="Senses/PlayerDetection" to="." method="_on_PlayerDetection_body_entered"]
 
-[editable path="HurtBox"]
 [editable path="HitBox"]
+[editable path="HurtBox"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Effects/BaseEffect.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Main Characters/Desappearing (96x96).png" type="Texture" id=2]
+[ext_resource path="res://Assets/Effects/explosion-1.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Animate"
-length = 0.4
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -13,10 +13,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 2, 3, 4, 5 ]
+"values": [ 2, 3, 4, 5, 6, 7 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -25,7 +25,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.400847 ),
+"times": PoolRealArray( 0.6 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -37,9 +37,10 @@ tracks/1/keys = {
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-hframes = 7
-frame = 5
+hframes = 8
+frame = 7
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Animate"
+playback_speed = 1.5
 anims/Animate = SubResource( 1 )

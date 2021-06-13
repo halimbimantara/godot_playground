@@ -1,13 +1,12 @@
 extends Character
 
-export(String, "Idle", "Run", "Hit", "Chase") var State := "Run"
+export(String, "Idle", "Run", "Hit") var State := "Run"
 
-onready var idleTimer = $IdleTimer
-onready var playerChaseTimer = $PlayerChaseTimer
+onready var idleTimer = $Timers/IdleTimer
 onready var floorFront: RayCast2D = $Senses/FloorFront
 onready var wallFront: RayCast2D = $Senses/WallFront
+onready var playerDetection: Area2D = $Senses/PlayerDetection
 onready var deathAnimation = preload("res://Effects/DeathAnimation.tscn")
-
 
 func _physics_process(delta: float) -> void:
 	var input := Vector2.ZERO
@@ -35,27 +34,17 @@ func _physics_process(delta: float) -> void:
 				State = "Idle"
 				idleTimer.start()
 				input.x = 0
-		
-		"Chase":
-			update_animation("Run", 2.0)
 			
-			input.x = flip_direction
-			speed_scale.x = 2.0
+		"Attack":
+			update_animation("Attack")
+			motion.x = 0
 			
-			if wallFront.is_colliding():
-				speed_scale.x = 1.0
-				State = "Run"
-			
-			if playerChaseTimer.time_left <= 0:
-				speed_scale.x = 1.0
-				State = "Idle"
-
 		"Hit":
 			update_animation("Hit")
+			motion.x = 0
 
 	apply_all(input, delta)
-	apply_move(speed_scale)
-
+	apply_move()
 
 func take_damage(damage: int) -> void:
 	HIT_POINTS -= damage
@@ -71,16 +60,20 @@ func _on_PlayerDetection_body_entered(body: Player) -> void:
 	if not body is Player: 
 		return
 	
-	if not State == "Chase":
+	if not State == "Attack":
+		playerDetection.set_monitoring(false)
 		var space_state = get_world_2d().direct_space_state
 		var result = space_state.intersect_ray(global_position, body.global_position, [self])
 		 
 		if result.collider is Player: 
-			playerChaseTimer.start()
-			State = "Chase"
+			State = "Attack"
 
 
 func animation_finished(animation: String) -> void:
 	if animation == "Hit":
-		check_death()
 		State = "Idle"
+		check_death()
+	
+	if animation == "Attack":
+		State = "Idle"
+		playerDetection.set_monitoring(true)
