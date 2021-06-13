@@ -1,4 +1,4 @@
-extends "res://State.gd"
+extends BaseState
 
 onready var coyoteTimer: Timer = $CoyoteTimer
 var jumping := false

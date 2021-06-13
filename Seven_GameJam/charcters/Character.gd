@@ -13,7 +13,6 @@ export(NodePath) var cameraPath
 onready var sprite: Sprite = $Sprite
 onready var collider: CollisionShape2D = $Collisor
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
-onready var stateMachine: StateMachine = $StateMachine
 
 var motion := Vector2.ZERO
 var input_vector := Vector2.ZERO
@@ -61,11 +60,6 @@ func apply_friction(delta:float):
 
 func take_damage(damage:int):
 	HIT_POINTS -= damage
-	
-	if HIT_POINTS <= 0:
-		stateMachine._change_state("Die")
-	else:
-		stateMachine._change_state("Hit")
 
 
 func _on_Hurtbox_hit(damage: int) -> void:

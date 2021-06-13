@@ -1,6 +1,6 @@
 [gd_scene load_steps=63 format=2]
 
-[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://charcters/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://graphics/tiles and background_foreground/tileset.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -656,7 +656,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 40, 56 )
-cameraPath = NodePath("../Camera2D")
 
 [node name="CameraGrip" parent="Player" index="6"]
 remote_path = NodePath("../../Camera2D")
