@@ -1,8 +1,8 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=2]
-[ext_resource path="res://Characters/Player/PlayerInputHandler.gd" type="Script" id=3]
+[ext_resource path="res://Characters/Input/PlayerInputHandler.gd" type="Script" id=3]
 [ext_resource path="res://Assets/herochar sprites(new)/herochar_idle_anim_strip_4.png" type="Texture" id=4]
 [ext_resource path="res://Characters/Player/States/Move.gd" type="Script" id=5]
 [ext_resource path="res://Assets/herochar sprites(new)/herochar_run_anim_strip_6.png" type="Texture" id=6]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/herochar sprites(new)/herochar_jump_down_anim_strip_3.png" type="Texture" id=8]
 [ext_resource path="res://Characters/Player/States/Jump.gd" type="Script" id=9]
 [ext_resource path="res://Assets/herochar sprites(new)/herochar_jump_up_anim_strip_3.png" type="Texture" id=10]
+[ext_resource path="res://Characters/Player/States/PlayerIdle.gd" type="Script" id=11]
 [ext_resource path="res://Effects/SwordAttack.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Characters/Player/States/SwordAttack.gd" type="Script" id=13]
 [ext_resource path="res://Assets/herochar sprites(new)/herochar_attack_anim_strip_4(new).png" type="Texture" id=14]
@@ -329,7 +330,7 @@ shape = SubResource( 1 )
 [node name="Sprite" parent="." index="2"]
 texture = ExtResource( 18 )
 hframes = 8
-frame = 7
+frame = 4
 
 [node name="AnimationPlayer" parent="." index="3"]
 anims/Die = SubResource( 2 )
@@ -340,11 +341,21 @@ anims/Jump = SubResource( 6 )
 anims/Move = SubResource( 7 )
 anims/SwordAttack = SubResource( 8 )
 
+[node name="Hurtbox" parent="." index="4"]
+collision_layer = 1
+
 [node name="HurtArea" parent="Hurtbox" index="0"]
+position = Vector2( 0, 1 )
 shape = SubResource( 9 )
+
+[node name="Timer" parent="Hurtbox" index="1"]
+wait_time = 2.0
 
 [node name="InputHandler" parent="." index="5"]
 script = ExtResource( 3 )
+
+[node name="Idle" parent="StateMachine" index="0"]
+script = ExtResource( 11 )
 
 [node name="Move" type="Node2D" parent="StateMachine" index="3"]
 script = ExtResource( 5 )

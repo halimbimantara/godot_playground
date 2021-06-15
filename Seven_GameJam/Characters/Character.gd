@@ -1,7 +1,6 @@
 extends KinematicBody2D
 class_name Character
 
-export(int) var HIT_POINTS := 3
 export(int) var MAX_HIT_POINTS := 3
 export(int) var MAX_SPEED := 70
 export(int) var ACCELERATION := 600
@@ -21,10 +20,14 @@ onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var stateMachine: StateMachine = $StateMachine
 onready var hurtBox: HurtBox = $Hurtbox
 
+var hit_points: int
 var motion := Vector2.ZERO
 var input_vector := Vector2.ZERO
 var flip_direction := 1
 
+
+func _ready() -> void:
+	hit_points = MAX_HIT_POINTS
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -66,17 +69,17 @@ func apply_friction(delta:float):
 
 
 func take_damage(damage:int):
-	HIT_POINTS -= damage
+	hit_points -= damage
 	
-	if HIT_POINTS < 0:
-		HIT_POINTS = 0
+	if hit_points < 0:
+		hit_points = 0
 	
-	if HIT_POINTS <= 0:
+	if hit_points <= 0:
 		emit_signal("die")
 	else:
 		emit_signal("take_hit")
 	
-	emit_signal("life_change", HIT_POINTS, MAX_HIT_POINTS)
+	emit_signal("life_change", hit_points, MAX_HIT_POINTS)
 
 
 func _on_Hurtbox_hit(damage: int) -> void:
