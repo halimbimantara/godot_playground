@@ -3,15 +3,13 @@ class_name BaseState
 
 signal finished(next_state_name)
 
-export(NodePath) var animationPlayerPath
-export(NodePath) var characterPath
-
+var character
 var animationPlayer: AnimationPlayer
-var character: Character
 
 func _ready() -> void:
-	animationPlayer = get_node(animationPlayerPath)
-	character = get_node(characterPath)
+	character = get_owner()
+	animationPlayer = get_node("../../AnimationPlayer")
+
 
 func enter():
 	animationPlayer.play(self.name)

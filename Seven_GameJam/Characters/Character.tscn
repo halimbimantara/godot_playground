@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Characters/Character.gd" type="Script" id=1]
 [ext_resource path="res://Characters/Input/InputHandler.gd" type="Script" id=2]
-[ext_resource path="res://Characters/Player/States/State.gd" type="Script" id=3]
+[ext_resource path="res://Characters/State/Idle.gd" type="Script" id=3]
 [ext_resource path="res://Characters/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Characters/State/Hit.gd" type="Script" id=5]
 [ext_resource path="res://Characters/State/Die.gd" type="Script" id=6]
@@ -35,15 +35,13 @@ script = ExtResource( 3 )
 
 [node name="Hit" type="Node2D" parent="StateMachine"]
 script = ExtResource( 5 )
-animationPlayerPath = NodePath("../../AnimationPlayer")
-characterPath = NodePath("../..")
 
 [node name="Die" type="Node2D" parent="StateMachine"]
 script = ExtResource( 6 )
-animationPlayerPath = NodePath("../../AnimationPlayer")
-characterPath = NodePath("../..")
 
 [connection signal="die" from="." to="StateMachine" method="_on_Character_die"]
 [connection signal="take_hit" from="." to="StateMachine" method="_on_Character_take_hit"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_AnimationPlayer_animation_finished"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_Hurtbox_hit"]
+
+[editable path="Hurtbox"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/Player/Player.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Assets/herochar sprites(new)/herochar_jump_down_anim_strip_3.png" type="Texture" id=8]
 [ext_resource path="res://Characters/Player/States/Jump.gd" type="Script" id=9]
 [ext_resource path="res://Assets/herochar sprites(new)/herochar_jump_up_anim_strip_3.png" type="Texture" id=10]
-[ext_resource path="res://Characters/State/Idle.gd" type="Script" id=11]
 [ext_resource path="res://Effects/SwordAttack.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Characters/Player/States/SwordAttack.gd" type="Script" id=13]
 [ext_resource path="res://Assets/herochar sprites(new)/herochar_attack_anim_strip_4(new).png" type="Texture" id=14]
@@ -363,25 +362,14 @@ shape = SubResource( 9 )
 [node name="InputHandler" parent="." index="5"]
 script = ExtResource( 3 )
 
-[node name="Idle" parent="StateMachine" index="0"]
-script = ExtResource( 11 )
-animationPlayerPath = NodePath("../../AnimationPlayer")
-characterPath = NodePath("../..")
-
 [node name="Move" type="Node2D" parent="StateMachine" index="3"]
 script = ExtResource( 5 )
-animationPlayerPath = NodePath("../../AnimationPlayer")
-characterPath = NodePath("../..")
 
 [node name="Falling" type="Node2D" parent="StateMachine" index="4"]
 script = ExtResource( 7 )
-animationPlayerPath = NodePath("../../AnimationPlayer")
-characterPath = NodePath("../..")
 
 [node name="Jump" type="Node2D" parent="StateMachine" index="5"]
 script = ExtResource( 9 )
-animationPlayerPath = NodePath("../../AnimationPlayer")
-characterPath = NodePath("../..")
 JumpEffect = ExtResource( 16 )
 
 [node name="CoyoteTimer" type="Timer" parent="StateMachine/Jump" index="0"]
@@ -394,8 +382,6 @@ position = Vector2( 0, 2 )
 
 [node name="SwordAttack" type="Node2D" parent="StateMachine" index="6"]
 script = ExtResource( 13 )
-animationPlayerPath = NodePath("../../AnimationPlayer")
-characterPath = NodePath("../..")
 SwordEffect = ExtResource( 12 )
 
 [node name="Slash" type="Position2D" parent="StateMachine/SwordAttack" index="0"]

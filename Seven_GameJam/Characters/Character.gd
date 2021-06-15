@@ -18,6 +18,7 @@ signal die()
 onready var sprite: Sprite = $Sprite
 onready var collider: CollisionShape2D = $Collisor
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+onready var stateMachine: StateMachine = $StateMachine
 onready var hurtBox: HurtBox = $Hurtbox
 
 var motion := Vector2.ZERO
