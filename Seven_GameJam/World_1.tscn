@@ -1,10 +1,10 @@
 [gd_scene load_steps=66 format=2]
 
-[ext_resource path="res://charcters/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://graphics/tiles and background_foreground/tileset.png" type="Texture" id=2]
-[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=3]
-[ext_resource path="res://misc/Spike.tscn" type="PackedScene" id=4]
-[ext_resource path="res://misc/Backgroud.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/tiles and background_foreground/tileset.png" type="Texture" id=2]
+[ext_resource path="res://Hud/Hud.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Misc/Spike.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Misc/Backgroud.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 0, 0, 0 )
