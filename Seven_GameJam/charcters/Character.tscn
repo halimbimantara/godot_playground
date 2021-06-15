@@ -44,4 +44,5 @@ animationPlayerPath = NodePath("../../AnimationPlayer")
 characterPath = NodePath("../..")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_AnimationPlayer_animation_finished"]
+[connection signal="hit" from="Hurtbox" to="StateMachine" method="_on_Hurtbox_hit"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_Hurtbox_hit"]

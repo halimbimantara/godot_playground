@@ -17,7 +17,6 @@ onready var sprite: Sprite = $Sprite
 onready var collider: CollisionShape2D = $Collisor
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
-
 var motion := Vector2.ZERO
 var input_vector := Vector2.ZERO
 var flip_direction := 1
@@ -64,6 +63,10 @@ func apply_friction(delta:float):
 
 func take_damage(damage:int):
 	HIT_POINTS -= damage
+	
+	if HIT_POINTS <= 0:
+		queue_free()
+	
 	emit_signal("life_change", HIT_POINTS, MAX_HIT_POINTS)
 
 

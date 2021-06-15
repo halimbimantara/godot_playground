@@ -34,3 +34,7 @@ func _change_state(state_name: String):
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	current_state.on_animation_finished(anim_name)
+
+
+func _on_Hurtbox_hit(damage) -> void:
+	_change_state("Hit")
