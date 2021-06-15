@@ -136,26 +136,23 @@ extents = Vector2( 8, 8 )
 collision_layer = 4
 collision_mask = 2
 
-[node name="Collisor" parent="." index="0"]
+[node name="Collisor" parent="." index="1"]
 shape = SubResource( 4 )
 
-[node name="Sprite" parent="." index="1"]
-texture = ExtResource( 3 )
+[node name="Sprite" parent="." index="2"]
+texture = ExtResource( 4 )
 hframes = 6
+frame = 4
 
-[node name="AnimationPlayer" parent="." index="2"]
+[node name="AnimationPlayer" parent="." index="3"]
 anims/Die = SubResource( 1 )
 anims/Hit = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 
-[node name="Hurtbox" parent="." index="3"]
+[node name="Hurtbox" parent="." index="4"]
 collision_layer = 4
 
 [node name="HurtArea" parent="Hurtbox" index="0"]
 shape = SubResource( 5 )
-
-[node name="Idle" parent="StateMachine" index="0"]
-animationPlayerPath = NodePath("../../AnimationPlayer")
-characterPath = NodePath("../..")
 
 [editable path="Hurtbox"]

@@ -4,10 +4,10 @@
 [ext_resource path="res://Assets/herochar sprites(new)/sword_effect_strip_4(new).png" type="Texture" id=2]
 [ext_resource path="res://Boxes/Hitbox.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 6 )
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 resource_name = "Animate"
 length = 0.4
 tracks/0/type = "value"
@@ -29,7 +29,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.398338 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -41,19 +41,20 @@ tracks/1/keys = {
 z_index = -1
 
 [node name="Hitbox" parent="." index="0" instance=ExtResource( 3 )]
-collision_layer = 4
-collision_mask = 0
+collision_layer = 0
+collision_mask = 4
 
 [node name="HitArea" parent="Hitbox" index="0"]
 position = Vector2( 0, 2 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
 hframes = 4
+frame = 3
 
 [node name="AnimationPlayer" parent="." index="2"]
 autoplay = "Animate"
-anims/Animate = SubResource( 1 )
+anims/Animate = SubResource( 2 )
 
 [editable path="Hitbox"]
