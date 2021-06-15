@@ -36,5 +36,9 @@ func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	current_state.on_animation_finished(anim_name)
 
 
-func _on_Hurtbox_hit(damage) -> void:
+func _on_Character_die() -> void:
+	_change_state("Die")
+
+
+func _on_Character_take_hit() -> void:
 	_change_state("Hit")

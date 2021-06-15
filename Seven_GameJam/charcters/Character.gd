@@ -12,10 +12,13 @@ export(float) var FRICTION := 0.5
 export(NodePath) var cameraPath
 
 signal life_change(life, max_life)
+signal take_hit()
+signal die()
 
 onready var sprite: Sprite = $Sprite
 onready var collider: CollisionShape2D = $Collisor
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+onready var hurtBox: HurtBox = $Hurtbox
 
 var motion := Vector2.ZERO
 var input_vector := Vector2.ZERO
@@ -64,8 +67,13 @@ func apply_friction(delta:float):
 func take_damage(damage:int):
 	HIT_POINTS -= damage
 	
+	if HIT_POINTS < 0:
+		HIT_POINTS = 0
+	
 	if HIT_POINTS <= 0:
-		queue_free()
+		emit_signal("die")
+	else:
+		emit_signal("take_hit")
 	
 	emit_signal("life_change", HIT_POINTS, MAX_HIT_POINTS)
 

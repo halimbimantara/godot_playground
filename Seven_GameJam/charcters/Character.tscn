@@ -43,6 +43,7 @@ script = ExtResource( 6 )
 animationPlayerPath = NodePath("../../AnimationPlayer")
 characterPath = NodePath("../..")
 
+[connection signal="die" from="." to="StateMachine" method="_on_Character_die"]
+[connection signal="take_hit" from="." to="StateMachine" method="_on_Character_take_hit"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_AnimationPlayer_animation_finished"]
-[connection signal="hit" from="Hurtbox" to="StateMachine" method="_on_Hurtbox_hit"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_Hurtbox_hit"]
