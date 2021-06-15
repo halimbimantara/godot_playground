@@ -28,3 +28,7 @@ func update_state(delta : float):
 
 func handle_input(event : String):
 	pass
+
+
+func on_animation_finished(animation: String):
+	pass

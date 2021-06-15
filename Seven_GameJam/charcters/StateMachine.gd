@@ -30,3 +30,7 @@ func _change_state(state_name: String):
 		current_state = update_state
 		current_state.enter()
 		emit_signal("state_changed", state_name)
+
+
+func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
+	current_state.on_animation_finished(anim_name)

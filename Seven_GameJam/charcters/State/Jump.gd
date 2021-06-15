@@ -23,9 +23,15 @@ func update_state(delta : float):
 		character.input_vector = Vector2.ZERO
 
 
+func handle_input(event : String):
+	if event == "reload":
+		emit_signal("finished", "SwordAttack")
+
+
 func _on_StateMachine_state_changed(new_state: String) -> void:
 	if new_state == "Falling":
 			coyoteTimer.start()
 	
 	if new_state == "Idle" or new_state == "Move":
-		jumping = false
+		if character.is_on_floor():
+			jumping = false

@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Character
 
 export(int) var HIT_POINTS := 3
+export(int) var MAX_HIT_POINTS := 3
 export(int) var MAX_SPEED := 70
 export(int) var ACCELERATION := 600
 export(int) var JUMP_FORCE := 180
@@ -10,9 +11,12 @@ export(float) var FRICTION := 0.5
 
 export(NodePath) var cameraPath
 
+signal life_change(life, max_life)
+
 onready var sprite: Sprite = $Sprite
 onready var collider: CollisionShape2D = $Collisor
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+
 
 var motion := Vector2.ZERO
 var input_vector := Vector2.ZERO
@@ -60,8 +64,8 @@ func apply_friction(delta:float):
 
 func take_damage(damage:int):
 	HIT_POINTS -= damage
+	emit_signal("life_change", HIT_POINTS, MAX_HIT_POINTS)
 
 
 func _on_Hurtbox_hit(damage: int) -> void:
 	take_damage(damage)
-

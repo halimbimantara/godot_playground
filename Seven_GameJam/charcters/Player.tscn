@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://charcters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://charcters/Player.gd" type="Script" id=2]
@@ -11,12 +11,14 @@
 [ext_resource path="res://charcters/State/Jump.gd" type="Script" id=9]
 [ext_resource path="res://graphics/herochar sprites(new)/herochar_jump_up_anim_strip_3.png" type="Texture" id=10]
 [ext_resource path="res://charcters/State/Idle.gd" type="Script" id=11]
+[ext_resource path="res://effects/SwordAttack.tscn" type="PackedScene" id=12]
+[ext_resource path="res://charcters/State/SwordAttack.gd" type="Script" id=13]
+[ext_resource path="res://graphics/herochar sprites(new)/herochar_attack_anim_strip_4(new).png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 7 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "Falling"
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -97,7 +99,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-resource_name = "Jump"
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -177,8 +178,59 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 10, 7 )
+[sub_resource type="Animation" id=6]
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("StateMachine/SwordAttack")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "create_sword_attack"
+} ]
+}
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 5, 7 )
@@ -189,11 +241,10 @@ collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="Debg" type="Label" parent="." index="0"]
-visible = false
-margin_left = -19.9986
-margin_top = -23.6049
-margin_right = 20.0014
-margin_bottom = -9.60489
+margin_left = -100.0
+margin_top = -25.0
+margin_right = 100.0
+margin_bottom = -11.0
 text = "TEXT"
 align = 1
 __meta__ = {
@@ -205,31 +256,22 @@ position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="2"]
-texture = ExtResource( 10 )
-hframes = 3
-frame = 1
+texture = ExtResource( 14 )
 
 [node name="AnimationPlayer" parent="." index="3"]
 anims/Falling = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/Jump = SubResource( 4 )
 anims/Move = SubResource( 5 )
+anims/SwordAttack = SubResource( 6 )
 
-[node name="Hitbox" parent="." index="4"]
-collision_layer = 0
-collision_mask = 4
-
-[node name="HitArea" parent="Hitbox" index="0"]
-position = Vector2( 15, 0 )
-shape = SubResource( 6 )
-
-[node name="Hurtbox" parent="." index="5"]
+[node name="Hurtbox" parent="." index="4"]
 collision_mask = 0
 
 [node name="HurtArea" parent="Hurtbox" index="0"]
 shape = SubResource( 7 )
 
-[node name="InputHandler" parent="." index="6"]
+[node name="InputHandler" parent="." index="5"]
 script = ExtResource( 3 )
 
 [node name="Idle" parent="StateMachine" index="0"]
@@ -257,8 +299,16 @@ wait_time = 0.15
 one_shot = true
 autostart = true
 
+[node name="SwordAttack" type="Node2D" parent="StateMachine" index="6"]
+script = ExtResource( 13 )
+animationPlayerPath = NodePath("../../AnimationPlayer")
+characterPath = NodePath("../..")
+SwordEffect = ExtResource( 12 )
+
+[node name="Slash" type="Position2D" parent="StateMachine/SwordAttack" index="0"]
+position = Vector2( 13, 0 )
+
 [connection signal="state_changed" from="StateMachine" to="StateMachine/Jump" method="_on_StateMachine_state_changed"]
 [connection signal="state_changed" from="StateMachine" to="." method="_on_StateMachine_state_changed"]
 
-[editable path="Hitbox"]
 [editable path="Hurtbox"]

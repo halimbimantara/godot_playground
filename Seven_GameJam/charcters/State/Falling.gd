@@ -13,5 +13,8 @@ func update_state(delta : float):
 
 
 func handle_input(event : String):
-	if event == "jump":
+	if event == "main":
 		emit_signal("finished", "Jump")
+	
+	elif event == "reload":
+		emit_signal("finished", "SwordAttack")
