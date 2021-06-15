@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/tiles and background_foreground/tileset.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Misc/Spike.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Misc/Backgroud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Characters/Enemies/Mushroom.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Misc/Coin.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 0, 0, 0 )
@@ -664,6 +665,14 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 position = Vector2( -56, 32 )
 current = true
 
+[node name="Collectable" type="Node2D" parent="."]
+
+[node name="Coin" parent="Collectable" instance=ExtResource( 7 )]
+position = Vector2( -24, 8 )
+
+[node name="Coin2" parent="Collectable" instance=ExtResource( 7 )]
+position = Vector2( -8, 8 )
+
 [node name="Tilemaps" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Tilemaps"]
@@ -696,11 +705,15 @@ position = Vector2( 40, 48 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -56, 32 )
 
+[node name="Timer" parent="Player/Hurtbox" index="1"]
+one_shot = false
+
 [node name="CameraGrip" parent="Player" index="6"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Backgrond" parent="." instance=ExtResource( 5 )]
 
+[connection signal="changed_coin" from="Player" to="Hud" method="_on_Player_changed_coin"]
 [connection signal="life_change" from="Player" to="Hud" method="_on_Player_life_change"]
 [connection signal="hit" from="Player/Hurtbox" to="Player/StateMachine" method="_on_Hurtbox_hit"]
 

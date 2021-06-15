@@ -38,6 +38,9 @@ __meta__ = {
 collision_layer = 0
 collision_mask = 0
 
+[node name="Timer" parent="Hurtbox" index="1"]
+one_shot = true
+
 [node name="InputHandler" type="Node2D" parent="."]
 script = ExtResource( 2 )
 

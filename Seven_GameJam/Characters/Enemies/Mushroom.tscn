@@ -11,10 +11,10 @@
 [ext_resource path="res://Characters/Enemies/Chase.gd" type="Script" id=9]
 [ext_resource path="res://Characters/Input/MonsterInput.gd" type="Script" id=10]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 resource_name = "Chase"
 length = 0.8
 loop = true
@@ -55,8 +55,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Die"
+[sub_resource type="Animation" id=3]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -95,8 +94,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Hit"
+[sub_resource type="Animation" id=4]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -135,8 +133,7 @@ tracks/2/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Idle"
+[sub_resource type="Animation" id=5]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -217,25 +214,25 @@ tracks/2/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 8 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 41, 15 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 7, 7 )
 
 [node name="Mushroom" instance=ExtResource( 2 )]
 collision_layer = 4
 collision_mask = 2
-MAX_HIT_POINTS = 10
+MAX_HIT_POINTS = 2
 MAX_SPEED = 40
 ACCELERATION = 300
 FRICTION = 0.35
 
 [node name="Collisor" parent="." index="1"]
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="2"]
 texture = ExtResource( 7 )
@@ -243,17 +240,20 @@ hframes = 8
 frame = 7
 
 [node name="AnimationPlayer" parent="." index="3"]
-anims/Chase = SubResource( 8 )
-anims/Die = SubResource( 1 )
-anims/Hit = SubResource( 2 )
-anims/Idle = SubResource( 3 )
+anims/Chase = SubResource( 2 )
+anims/Die = SubResource( 3 )
+anims/Hit = SubResource( 4 )
+anims/Idle = SubResource( 5 )
 anims/Wander = SubResource( 6 )
 
 [node name="Hurtbox" parent="." index="4"]
 collision_layer = 4
 
 [node name="HurtArea" parent="Hurtbox" index="0"]
-shape = SubResource( 5 )
+shape = SubResource( 7 )
+
+[node name="Timer" parent="Hurtbox" index="1"]
+wait_time = 0.5
 
 [node name="InputHandler" parent="." index="5"]
 script = ExtResource( 10 )
@@ -264,7 +264,7 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InputHandler/Area2D" index="0"]
 position = Vector2( 42, -7 )
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="Idle" parent="StateMachine" index="0"]
 script = ExtResource( 6 )
@@ -296,6 +296,8 @@ autostart = true
 
 [node name="Chase" type="Node2D" parent="StateMachine" index="4"]
 script = ExtResource( 9 )
+MAX_SPEED = 80
+ACCELERATION = 800
 
 [node name="Timer" type="Timer" parent="StateMachine/Chase" index="0"]
 wait_time = 3.0
@@ -306,7 +308,7 @@ collision_layer = 0
 
 [node name="HitArea" parent="Hitbox" index="0"]
 position = Vector2( 0, 1 )
-shape = SubResource( 7 )
+shape = SubResource( 9 )
 
 [connection signal="body_entered" from="InputHandler/Area2D" to="InputHandler" method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="StateMachine/Idle/WaitTimer" to="StateMachine/Idle" method="_on_WaitTimer_timeout"]

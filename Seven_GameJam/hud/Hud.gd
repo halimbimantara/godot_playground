@@ -2,14 +2,20 @@ extends CanvasLayer
 
 export(int) var max_life := 3
 export(int) var life := 3 
+export(int) var coins := 0
 export(PackedScene) var HeartIcon
 export(PackedScene) var HeartEmpty
 
 onready var lifeContainer = $Control/LifeContainer
-
+onready var coinsCounter = $Control/HBoxContainer/Label
 
 func _ready() -> void:
 	update_hearts()
+	update_coins()
+
+
+func update_coins():
+	coinsCounter.text = str(coins)
 
 
 func update_hearts():
@@ -37,3 +43,8 @@ func _on_Player_life_change(life:int, max_life:int) -> void:
 	self.life = life
 	self.max_life = max_life
 	update_hearts()
+
+
+func _on_Player_changed_coin(value) -> void:
+	self.coins = value
+	update_coins()
