@@ -1,6 +1,8 @@
 extends BaseState
 
+export(PackedScene) var JumpEffect
 onready var coyoteTimer: Timer = $CoyoteTimer
+onready var jumpEffectPosition: Position2D = $JumpEffectPosition
 var jumping := false
 
 
@@ -8,6 +10,7 @@ func update_state(delta : float):
 	if character.is_on_floor() or coyoteTimer.time_left > 0:
 		if !jumping:
 			jumping = true
+			Utils.instance_scene_on_main(JumpEffect, jumpEffectPosition.global_position)
 			character.motion.y = -character.JUMP_FORCE
 	
 	if(character.motion.y > 0):
