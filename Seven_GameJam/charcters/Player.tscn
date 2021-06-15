@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://charcters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://charcters/Player.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://graphics/herochar sprites(new)/herochar_attack_anim_strip_4(new).png" type="Texture" id=14]
 [ext_resource path="res://graphics/herochar sprites(new)/herochar_hit_anim_strip_3.png" type="Texture" id=15]
 [ext_resource path="res://effects/JumpDustEffect.tscn" type="PackedScene" id=16]
+[ext_resource path="res://hud/ThemeData.tres" type="Theme" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 7 )
@@ -284,9 +285,10 @@ script = ExtResource( 2 )
 
 [node name="Debg" type="Label" parent="." index="0"]
 margin_left = -100.0
-margin_top = -25.0
+margin_top = -26.0
 margin_right = 100.0
-margin_bottom = -11.0
+margin_bottom = -2.0
+theme = ExtResource( 17 )
 text = "TEXT"
 align = 1
 __meta__ = {
