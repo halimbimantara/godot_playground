@@ -68,6 +68,14 @@ func apply_friction(delta:float):
 		motion.x = lerp(motion.x, 0, FRICTION)
 
 
+func heal_damage(heal:int):
+	hit_points += heal
+	
+	if hit_points > MAX_HIT_POINTS:
+		hit_points = MAX_HIT_POINTS
+	
+	emit_signal("life_change", hit_points, MAX_HIT_POINTS)
+
 func take_damage(damage:int):
 	hit_points -= damage
 	
