@@ -29,6 +29,7 @@ var flip_direction := 1
 func _ready() -> void:
 	hit_points = MAX_HIT_POINTS
 
+
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	apply_horizontal_force(delta)
