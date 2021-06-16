@@ -348,9 +348,6 @@ collision_layer = 1
 position = Vector2( 0, 1 )
 shape = SubResource( 9 )
 
-[node name="Timer" parent="Hurtbox" index="1"]
-wait_time = 2.0
-
 [node name="InputHandler" parent="." index="5"]
 script = ExtResource( 3 )
 

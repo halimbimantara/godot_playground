@@ -709,9 +709,6 @@ position = Vector2( 40, 48 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -56, 32 )
 
-[node name="Timer" parent="Player/Hurtbox" index="1"]
-one_shot = false
-
 [node name="CameraGrip" parent="Player" index="6"]
 remote_path = NodePath("../../Camera2D")
 
