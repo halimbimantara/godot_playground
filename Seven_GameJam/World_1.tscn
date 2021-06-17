@@ -685,6 +685,21 @@ position = Vector2( 80, 56 )
 [node name="Vase2" parent="Collectable" instance=ExtResource( 9 )]
 position = Vector2( 16, 56 )
 
+[node name="Vase3" parent="Collectable" instance=ExtResource( 9 )]
+position = Vector2( -104, 40 )
+
+[node name="Vase5" parent="Collectable" instance=ExtResource( 9 )]
+position = Vector2( -88, 40 )
+
+[node name="Vase4" parent="Collectable" instance=ExtResource( 9 )]
+position = Vector2( -96, 40 )
+
+[node name="Vase6" parent="Collectable" instance=ExtResource( 9 )]
+position = Vector2( -40, 40 )
+
+[node name="Vase7" parent="Collectable" instance=ExtResource( 9 )]
+position = Vector2( -48, 40 )
+
 [node name="Orb" parent="Collectable" instance=ExtResource( 10 )]
 position = Vector2( 264, 104 )
 
@@ -724,7 +739,7 @@ position = Vector2( 152, 88 )
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Mushroom" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 40, 48 )
+position = Vector2( 48, 56 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -56, 32 )
