@@ -1,18 +1,22 @@
 extends BaseState
 
 export(PackedScene) var JumpEffect
+
 onready var coyoteTimer: Timer = $CoyoteTimer
 onready var jumpEffectPosition: Position2D = $JumpEffectPosition
-var jumping := false
+
+var jumping: bool = false
+var should_jump: bool = false
+
+func enter():
+	.enter()
+	should_jump = true
 
 
 # warning-ignore:unused_argument
 func update_state(delta : float):
-	if character.is_on_floor() or coyoteTimer.time_left > 0:
-		if !jumping:
-			jumping = true
-			Utils.instance_scene_on_main(JumpEffect, jumpEffectPosition.global_position)
-			character.motion.y = -character.JUMP_FORCE
+	if should_jump:
+		jump()
 	
 	if(character.motion.y > 0):
 		emit_signal("finished", "Falling")
@@ -26,6 +30,13 @@ func update_state(delta : float):
 	else:
 		character.input_vector = Vector2.ZERO
 
+
+func jump():
+	if character.is_on_floor() or coyoteTimer.time_left > 0:
+		if !jumping:
+			jumping = true
+			Utils.instance_scene_on_main(JumpEffect, jumpEffectPosition.global_position)
+			character.motion.y = -character.JUMP_FORCE
 
 func handle_input(event : String):
 	if event == "reload":

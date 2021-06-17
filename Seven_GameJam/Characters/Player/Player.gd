@@ -13,6 +13,14 @@ func _ready() -> void:
 	emit_signal("changed_collectables", collectable_dict)
 
 
+func can_consume_orb():
+	return collectable_dict.orbs > 0
+
+
+func consume_obrs(value: int = 1):
+	collectable_dict.orbs -= value
+
+
 func collect_item(type: String):
 	if type == "Coin":
 		collectable_dict.coins += 1
