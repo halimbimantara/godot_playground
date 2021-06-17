@@ -6,6 +6,7 @@ onready var jumpEffectPosition: Position2D = $JumpEffectPosition
 var jumping := false
 
 
+# warning-ignore:unused_argument
 func update_state(delta : float):
 	if character.is_on_floor() or coyoteTimer.time_left > 0:
 		if !jumping:

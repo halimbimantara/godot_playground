@@ -60,10 +60,12 @@ func apply_gravity(delta:float):
 		motion.y = min(motion.y, JUMP_FORCE)
 
 
+# warning-ignore:unused_argument
 func apply_move(delta:float):
 	motion = move_and_slide(motion, Vector2.UP)
 
 
+# warning-ignore:unused_argument
 func apply_friction(delta:float):
 	if input_vector.x == 0 and is_on_floor():
 		motion.x = lerp(motion.x, 0, FRICTION)

@@ -18,6 +18,7 @@ func exit():
 	.exit()
 
 
+# warning-ignore:unused_argument
 func update_state(delta : float):
 	character.input_vector.x = character.flip_direction
 

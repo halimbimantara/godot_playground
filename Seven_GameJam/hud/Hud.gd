@@ -43,9 +43,9 @@ func create_empty_heart():
 	lifeContainer.add_child(instance)
 
 
-func _on_Player_life_change(life:int, max_life:int) -> void:
-	self.life = life
-	self.max_life = max_life
+func _on_Player_life_change(received_life:int, received_max_life:int) -> void:
+	life = received_life
+	max_life = received_max_life
 	update_hearts()
 
 

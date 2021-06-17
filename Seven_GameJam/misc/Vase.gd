@@ -23,7 +23,7 @@ func drop_item():
 	random_instance.global_position.x += rand_range(-4, 4)
 	random_instance.global_position.y += rand_range(-4, 0)
 
-func _on_Hurtbox_hit(damage) -> void:
+func _on_Hurtbox_hit(damage: int) -> void:
 	drop_item()
 	Utils.instance_scene_on_main(brokenEffect, global_position)
 	queue_free()

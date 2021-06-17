@@ -1,5 +1,6 @@
 extends BaseState
 
+# warning-ignore:unused_argument
 func update_state(delta : float):
 	if character.is_on_floor():
 		character.input_vector = Vector2.ZERO

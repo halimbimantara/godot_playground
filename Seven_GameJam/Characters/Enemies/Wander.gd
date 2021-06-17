@@ -11,6 +11,7 @@ func enter():
 	timer.start()
 
 
+# warning-ignore:unused_argument
 func update_state(delta : float):
 	character.input_vector = direction
 	
@@ -24,5 +25,6 @@ func update_state(delta : float):
 			emit_signal("finished", "Idle")
 
 
+# warning-ignore:unused_argument
 func handle_input(event : String):
 	emit_signal("finished", "Chase")
