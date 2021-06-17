@@ -1,14 +1,26 @@
 extends Character
 class_name Player
 
-export(int) var coins := 0
+signal changed_collectables(collectable_dict)
 
-signal changed_coin(value)
+var collectable_dict = {
+	"coins": 0,
+	"orbs": 0
+}
+
+
+func _ready() -> void:
+	emit_signal("changed_collectables", collectable_dict)
+
 
 func collect_item(type: String):
 	if type == "Coin":
-		coins += 1
-		emit_signal("changed_coin", coins)
+		collectable_dict.coins += 1
+	
+	if type == "Orb":
+		collectable_dict.orbs += 1
 	
 	if type == "Potion":
 		heal_damage(1)
+	
+	emit_signal("changed_collectables", collectable_dict)

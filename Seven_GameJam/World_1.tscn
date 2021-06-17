@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/tiles and background_foreground/tileset.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Misc/Coin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Misc/Potion.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Misc/Vase.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Misc/Orb.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 0, 0, 0 )
@@ -684,6 +685,18 @@ position = Vector2( 80, 56 )
 [node name="Vase2" parent="Collectable" instance=ExtResource( 9 )]
 position = Vector2( 16, 56 )
 
+[node name="Orb" parent="Collectable" instance=ExtResource( 10 )]
+position = Vector2( 264, 104 )
+
+[node name="Orb2" parent="Collectable" instance=ExtResource( 10 )]
+position = Vector2( 272, 104 )
+
+[node name="Orb3" parent="Collectable" instance=ExtResource( 10 )]
+position = Vector2( 280, 104 )
+
+[node name="Orb4" parent="Collectable" instance=ExtResource( 10 )]
+position = Vector2( 288, 104 )
+
 [node name="Tilemaps" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Tilemaps"]
@@ -721,7 +734,7 @@ remote_path = NodePath("../../Camera2D")
 
 [node name="Backgrond" parent="." instance=ExtResource( 5 )]
 
-[connection signal="changed_coin" from="Player" to="Hud" method="_on_Player_changed_coin"]
+[connection signal="changed_collectables" from="Player" to="Hud" method="_on_Player_changed_collectables"]
 [connection signal="life_change" from="Player" to="Hud" method="_on_Player_life_change"]
 [connection signal="hit" from="Player/Hurtbox" to="Player/StateMachine" method="_on_Hurtbox_hit"]
 

@@ -328,9 +328,8 @@ position = Vector2( 0, 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="2"]
-texture = ExtResource( 18 )
-hframes = 8
-frame = 4
+texture = ExtResource( 4 )
+hframes = 4
 
 [node name="AnimationPlayer" parent="." index="3"]
 anims/Die = SubResource( 2 )

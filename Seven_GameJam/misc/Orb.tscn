@@ -1,13 +1,14 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Assets/miscellaneous sprites/coin_anim_strip_6.png" type="Texture" id=1]
+[ext_resource path="res://Assets/miscellaneous sprites/orb_anim_strip_6.png" type="Texture" id=1]
 [ext_resource path="res://Misc/Collectable.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Effects/CoinCollectEffect.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Effects/OrbCollectEffect.tscn" type="PackedScene" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 6.0
+[sub_resource type="CircleShape2D" id=2]
+radius = 4.0
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
+resource_name = "animate"
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -23,13 +24,13 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[node name="Coin" instance=ExtResource( 2 )]
+[node name="Orb" instance=ExtResource( 2 )]
 collision_mask = 1
-type = "Coin"
+type = "Orb"
 CollectEffect = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 1 )
@@ -37,4 +38,4 @@ hframes = 6
 
 [node name="AnimationPlayer" parent="." index="2"]
 autoplay = "animate"
-anims/animate = SubResource( 2 )
+anims/animate = SubResource( 1 )
