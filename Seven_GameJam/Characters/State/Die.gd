@@ -2,7 +2,7 @@ extends BaseState
 
 func enter():
 	.enter()
-	character.hurtBox.monitoring = false
+	character.hurtBoxCollider.set_disabled(true)
 
 
 # warning-ignore:unused_argument

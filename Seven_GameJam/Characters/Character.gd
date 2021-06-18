@@ -19,6 +19,7 @@ onready var collider: CollisionShape2D = $Collisor
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var stateMachine: StateMachine = $StateMachine
 onready var hurtBox: HurtBox = $Hurtbox
+onready var hurtBoxCollider: CollisionShape2D = $Hurtbox/HurtArea
 
 var hit_points: int
 var motion := Vector2.ZERO
