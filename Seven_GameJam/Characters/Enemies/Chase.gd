@@ -25,6 +25,9 @@ func exit():
 # warning-ignore:unused_argument
 func update_state(delta : float):
 	direction = character.flip_direction
+	
+	if character.is_on_floor() and frontRay.is_colliding():
+		character.motion.y = -character.JUMP_FORCE
 
 
 func _on_Timer_timeout() -> void:

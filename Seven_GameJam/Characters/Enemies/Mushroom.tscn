@@ -259,11 +259,11 @@ wait_time = 0.5
 [node name="InputHandler" parent="." index="5"]
 script = ExtResource( 10 )
 
-[node name="Area2D" type="Area2D" parent="InputHandler" index="0"]
+[node name="PlayerSense" type="Area2D" parent="InputHandler" index="0"]
 collision_layer = 0
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InputHandler/Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InputHandler/PlayerSense" index="0"]
 position = Vector2( 42, -7 )
 shape = SubResource( 8 )
 
@@ -300,7 +300,13 @@ script = ExtResource( 9 )
 MAX_SPEED = 80
 ACCELERATION = 800
 
-[node name="Timer" type="Timer" parent="StateMachine/Chase" index="0"]
+[node name="FrontRay" type="RayCast2D" parent="StateMachine/Chase" index="0"]
+position = Vector2( 16, 0 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2
+
+[node name="Timer" type="Timer" parent="StateMachine/Chase" index="1"]
 wait_time = 3.0
 one_shot = true
 
@@ -313,7 +319,8 @@ shape = SubResource( 9 )
 
 [node name="DropItem" parent="." index="9" instance=ExtResource( 11 )]
 
-[connection signal="body_entered" from="InputHandler/Area2D" to="InputHandler" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="InputHandler/PlayerSense" to="InputHandler" method="_on_Area2D_body_entered"]
+[connection signal="state_changed" from="StateMachine" to="InputHandler" method="_on_StateMachine_state_changed"]
 [connection signal="state_changed" from="StateMachine" to="DropItem" method="_on_StateMachine_state_changed"]
 [connection signal="timeout" from="StateMachine/Idle/WaitTimer" to="StateMachine/Idle" method="_on_WaitTimer_timeout"]
 [connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_Timer_timeout"]
