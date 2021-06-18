@@ -3,6 +3,9 @@ extends BaseState
 func enter():
 	.enter()
 	character.hurtBoxCollider.set_disabled(true)
+	
+	if character.get("hitboxCollision") != null:
+		character.hitboxCollision.set_disabled(true)
 
 
 # warning-ignore:unused_argument

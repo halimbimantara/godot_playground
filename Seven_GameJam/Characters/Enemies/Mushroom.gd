@@ -1,4 +1,4 @@
 extends Character
 
-onready var hit_box_area: CollisionShape2D = $Hitbox/HitArea
+onready var hitboxCollision: CollisionShape2D = $Hitbox/HitArea
 
