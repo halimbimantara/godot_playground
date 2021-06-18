@@ -4,10 +4,10 @@
 [ext_resource path="res://Misc/Collectable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Effects/OrbCollectEffect.tscn" type="PackedScene" id=3]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 4.0
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 resource_name = "animate"
 length = 0.6
 loop = true
@@ -30,7 +30,7 @@ type = "Orb"
 CollectEffect = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 1 )
@@ -38,4 +38,4 @@ hframes = 6
 
 [node name="AnimationPlayer" parent="." index="2"]
 autoplay = "animate"
-anims/animate = SubResource( 1 )
+anims/animate = SubResource( 2 )

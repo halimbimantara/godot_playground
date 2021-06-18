@@ -19,6 +19,7 @@ func can_consume_orb():
 
 func consume_obrs(value: int = 1):
 	collectable_dict.orbs -= value
+	emit_signal("changed_collectables", collectable_dict)
 
 
 func collect_item(type: String):

@@ -39,7 +39,6 @@ tracks/1/keys = {
 }
 
 [node name="SwordAttack" instance=ExtResource( 1 )]
-z_index = -1
 script = ExtResource( 4 )
 SlashHitEffect = ExtResource( 5 )
 

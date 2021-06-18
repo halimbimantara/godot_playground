@@ -63,7 +63,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Seven Game Jam"
-run/main_scene="res://World_1.tscn"
+run/main_scene="res://Level_1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
