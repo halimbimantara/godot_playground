@@ -320,8 +320,8 @@ shape = SubResource( 9 )
 [node name="DropItem" parent="." index="9" instance=ExtResource( 11 )]
 
 [connection signal="body_entered" from="InputHandler/PlayerSense" to="InputHandler" method="_on_Area2D_body_entered"]
-[connection signal="state_changed" from="StateMachine" to="DropItem" method="_on_StateMachine_state_changed"]
 [connection signal="state_changed" from="StateMachine" to="InputHandler" method="_on_StateMachine_state_changed"]
+[connection signal="state_changed" from="StateMachine" to="DropItem" method="_on_StateMachine_state_changed"]
 [connection signal="timeout" from="StateMachine/Idle/WaitTimer" to="StateMachine/Idle" method="_on_WaitTimer_timeout"]
 [connection signal="timeout" from="StateMachine/Chase/Timer" to="StateMachine/Chase" method="_on_Timer_timeout"]
 
