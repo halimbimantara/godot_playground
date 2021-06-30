@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Collectable",
 "language": "GDScript",
-"path": "res://Misc/Collectable.gd"
+"path": "res://misc/Collectable.gd"
 }, {
 "base": "Area2D",
 "class": "HitBox",

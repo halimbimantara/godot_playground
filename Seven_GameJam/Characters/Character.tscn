@@ -7,7 +7,7 @@
 [ext_resource path="res://Characters/State/Hit.gd" type="Script" id=5]
 [ext_resource path="res://Characters/State/Die.gd" type="Script" id=6]
 [ext_resource path="res://Characters/Boxes/Hurtbox.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Hud/ThemeData.tres" type="Theme" id=8]
+[ext_resource path="res://hud/ThemeData.tres" type="Theme" id=8]
 [ext_resource path="res://Characters/DebugInfo.gd" type="Script" id=9]
 
 [node name="Character" type="KinematicBody2D"]

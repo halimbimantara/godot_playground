@@ -2,15 +2,15 @@
 
 [ext_resource path="res://Characters/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/tiles and background_foreground/tileset.png" type="Texture" id=2]
-[ext_resource path="res://Hud/Hud.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Misc/Spike.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Misc/Backgroud.tscn" type="PackedScene" id=5]
+[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=3]
+[ext_resource path="res://misc/Spike.tscn" type="PackedScene" id=4]
+[ext_resource path="res://misc/Backgroud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Characters/Enemies/Mushroom.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Misc/Coins/DoubleCoin.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Misc/Potions/Potion.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Misc/Vases/TripleVase.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Misc/Orbs/Orb.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Misc/Coins/FiveOCoins.tscn" type="PackedScene" id=11]
+[ext_resource path="res://misc/Coins/DoubleCoin.tscn" type="PackedScene" id=7]
+[ext_resource path="res://misc/Potions/Potion.tscn" type="PackedScene" id=8]
+[ext_resource path="res://misc/Vases/TripleVase.tscn" type="PackedScene" id=9]
+[ext_resource path="res://misc/Orbs/Orb.tscn" type="PackedScene" id=10]
+[ext_resource path="res://misc/Coins/FiveOCoins.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 0, 0, 0 )
