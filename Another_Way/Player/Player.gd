@@ -9,8 +9,10 @@ export (float) var FRICTION = 0.3
 export (int) var GRAVITY = 400
 export (int) var JUMP_FORCE = 160
 export (int) var MAX_HITPOINTS = 5
+export (PackedScene) var dustEffectScene
 
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+onready var dustEffectPosition: Position2D = $DustEffectPosition
 onready var frontFloor: RayCast2D = $Senses/FrontFloor
 onready var rearFloor: RayCast2D = $Senses/RearFloor
 
@@ -103,6 +105,7 @@ func _state_jump(input: Vector2, delta: float):
 	animationPlayer.play("Jump")
 	
 	if is_grounded() and not is_jumping:
+		create_dust_effect()
 		is_jumping = true
 		motion.y = -JUMP_FORCE
 	
@@ -180,6 +183,11 @@ func change_life(value):
 func move():
 	motion = move_and_slide(motion, Vector2.UP)
 
+
+func create_dust_effect():
+	var instance = dustEffectScene.instance()
+	get_tree().current_scene.add_child(instance)
+	instance.global_position = dustEffectPosition.global_position
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
