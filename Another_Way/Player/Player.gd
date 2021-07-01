@@ -31,6 +31,9 @@ func _physics_process(delta: float) -> void:
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	
+	if life <= 0:
+		_change_state(DEATH)
+	
 	match state:
 		MOVE: _state_move(input_vector, delta)
 		JUMP: _state_jump(input_vector, delta)
@@ -41,7 +44,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent):
-	if not state == HIT:
+	if not state == HIT or not state == DEATH:
 		if event.is_action_pressed("jump"):
 			if not state == JUMP and not is_jumping:
 				_change_state(JUMP)

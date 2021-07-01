@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/tiles and background_foreground/tileset.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Backgroud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Worm.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/Slime.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -582,10 +583,10 @@ position = Vector2( 120, 120 )
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Worm" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( -24, 108 )
+position = Vector2( 216, 12 )
 
 [node name="Worm2" parent="Enemies" instance=ExtResource( 6 )]
-position = Vector2( 44, 92 )
+position = Vector2( -16, 8 )
 
 [node name="Worm3" parent="Enemies" instance=ExtResource( 6 )]
 position = Vector2( 144, 108 )
@@ -595,6 +596,12 @@ position = Vector2( 208, 156 )
 
 [node name="Worm5" parent="Enemies" instance=ExtResource( 6 )]
 position = Vector2( 260, 108 )
+
+[node name="Slime" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 176, 24 )
+
+[node name="Slime2" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 48, 88 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -88, 88 )
