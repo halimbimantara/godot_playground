@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name Player
 
+signal life_changed(life, max_life)
+
 export (int) var ACCELERATION = 600
 export (int) var MAX_SPEED = 70
 export (float) var FRICTION = 0.3
@@ -12,13 +14,18 @@ onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var frontFloor: RayCast2D = $Senses/FrontFloor
 onready var rearFloor: RayCast2D = $Senses/RearFloor
 
-enum { MOVE, JUMP, FALLING, ATTACK, HIT }
+enum { MOVE, JUMP, FALLING, ATTACK, HIT, DEATH }
 
 var state = MOVE
 var motion = Vector2.ZERO
 var flip_direction: int = 1
 var is_jumping := false
 var life = MAX_HITPOINTS
+
+
+func _ready():
+	emit_signal("life_changed", life, MAX_HITPOINTS)
+
 
 func _physics_process(delta: float) -> void:
 	var input_vector = Vector2.ZERO
@@ -30,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		FALLING: _state_falling(input_vector, delta)
 		ATTACK: _state_attack(input_vector, delta)
 		HIT: _state_hit(input_vector, delta)
+		DEATH: _state_death(input_vector)
 
 
 func _input(event: InputEvent):
@@ -41,6 +49,13 @@ func _input(event: InputEvent):
 		if event.is_action_pressed("attack"):
 			if not state == ATTACK:
 				_change_state(ATTACK)
+
+
+# warning-ignore:unused_argument
+func _state_death(input: Vector2):
+	motion = Vector2.ZERO
+	input = Vector2.ZERO
+	animationPlayer.play("Death")
 
 
 func _state_hit(input: Vector2, delta: float):
@@ -116,7 +131,6 @@ func _state_move(input: Vector2, delta: float):
 
 
 func _change_state(new_state):
-	print("New state: ", new_state)
 	state = new_state
 
 
@@ -157,6 +171,7 @@ func apply_flip_scale(input: Vector2):
 
 func change_life(value):
 	life += value
+	emit_signal("life_changed", life, MAX_HITPOINTS)
 
 
 func move():
@@ -168,10 +183,17 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"Attack":
 			is_jumping = false
 			_change_state(MOVE)
+		
 		"Hit":
 			is_jumping = false
-			_change_state(MOVE)
-
+			
+			if life > 0:
+				_change_state(MOVE)
+			else: 
+				_change_state(DEATH)
+		
+		"Death":
+			queue_free()
 
 func _on_Hurtbox_hit(damage):
 	if not state == HIT:

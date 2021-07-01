@@ -6,6 +6,10 @@ signal hit(damage)
 onready var timer: Timer = $InvenciblityTimer
 onready var collisor: CollisionShape2D = $Collisor
 
+func disable():
+	collisor.set_disabled(true)
+
+
 func _on_Hurtbox_area_entered(hitbox: Hitbox):
 	if (hitbox is Hitbox) and timer.time_left == 0.0:
 		collisor.set_disabled(true)
