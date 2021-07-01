@@ -189,6 +189,7 @@ func create_dust_effect():
 	get_tree().current_scene.add_child(instance)
 	instance.global_position = dustEffectPosition.global_position
 
+
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"Attack":
