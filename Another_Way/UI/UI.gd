@@ -4,9 +4,22 @@ export(PackedScene) var fullHeartScene
 export(PackedScene) var emptyHeartScene
 
 onready var lifeholder: HBoxContainer = $FullArea/LifeHolder
+onready var coinCounter: Label = $FullArea/VBoxContainer/CoinHolder/CoinCounter
+onready var manaCounter: Label = $FullArea/VBoxContainer/ManaHolder/ManaCounter
 
 func _ready():
 	update_life(0,0)
+	update_coin(0)
+	update_mana(0)
+
+
+func update_coin(value:int):
+	coinCounter.text = str(value)
+
+
+func update_mana(value:int):
+	manaCounter.text = str(value)
+
 
 func update_life(life: int, max_life: int):
 	var fullHeartAmount = life
@@ -26,3 +39,11 @@ func update_life(life: int, max_life: int):
 
 func _on_Player_life_changed(life, max_life):
 	update_life(life, max_life)
+
+
+func _on_Player_coin_changed(coin):
+	update_coin(coin)
+
+
+func _on_Player_mana_changed(mana):
+	update_mana(mana)

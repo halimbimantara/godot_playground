@@ -2,13 +2,15 @@ extends KinematicBody2D
 class_name Player
 
 signal life_changed(life, max_life)
+signal mana_changed(mana)
+signal coin_changed(coin)
 
+export (int) var MAX_HITPOINTS = 5
 export (int) var ACCELERATION = 600
 export (int) var MAX_SPEED = 70
 export (float) var FRICTION = 0.3
 export (int) var GRAVITY = 400
 export (int) var JUMP_FORCE = 160
-export (int) var MAX_HITPOINTS = 5
 export (PackedScene) var dustEffectScene
 
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
@@ -18,11 +20,14 @@ onready var rearFloor: RayCast2D = $Senses/RearFloor
 
 enum { MOVE, JUMP, FALLING, ATTACK, HIT, DEATH }
 
+var life: int = MAX_HITPOINTS
+var coins := 0
+var mana := 0
+
 var state = MOVE
-var motion = Vector2.ZERO
+var motion := Vector2.ZERO
 var flip_direction: int = 1
 var is_jumping := false
-var life = MAX_HITPOINTS
 
 
 func _ready():
@@ -180,6 +185,16 @@ func change_life(value):
 	emit_signal("life_changed", life, MAX_HITPOINTS)
 
 
+func change_mana(value):
+	mana += value
+	emit_signal("mana_changed", mana)
+
+
+func change_coin(value):
+	coins += value
+	emit_signal("coin_changed", coins)
+
+
 func move():
 	motion = move_and_slide(motion, Vector2.UP)
 
@@ -207,7 +222,23 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		"Death":
 			queue_free()
 
+
 func _on_Hurtbox_hit(damage):
 	if not state == HIT:
 		change_life(-damage)
 		_change_state(HIT)
+
+
+func _on_PickableRange_area_entered(pickable: Area2D):
+	if pickable is Pickable:
+		match pickable.type:
+			"Potion":
+				change_life(1)
+				pickable.collect()
+			"Mana":
+				change_mana(1)
+				pickable.collect()
+			"Coin":
+				change_coin(1)
+				pickable.collect()
+

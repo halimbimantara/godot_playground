@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/herochar sprites(new)/herochar_idle_anim_strip_4.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -390,6 +390,10 @@ tracks/3/keys = {
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 5, 7 )
 
+[sub_resource type="CapsuleShape2D" id=11]
+radius = 6.0
+height = 4.0
+
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 4, 7 )
 
@@ -420,6 +424,14 @@ shape = SubResource( 8 )
 
 [node name="CamFixed" type="RemoteTransform2D" parent="."]
 
+[node name="PickableRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickableRange"]
+position = Vector2( -1, 1 )
+shape = SubResource( 11 )
+
 [node name="Hurtbox" parent="." instance=ExtResource( 9 )]
 collision_mask = 0
 
@@ -429,7 +441,7 @@ shape = SubResource( 9 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 7 )]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 10
 
 [node name="Collisor" parent="Hitbox" index="0"]
 position = Vector2( 15, 2 )
@@ -454,6 +466,7 @@ collision_mask = 2
 position = Vector2( 0, 2 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="area_entered" from="PickableRange" to="." method="_on_PickableRange_area_entered"]
 [connection signal="hit" from="Hurtbox" to="." method="_on_Hurtbox_hit"]
 
 [editable path="Hurtbox"]
