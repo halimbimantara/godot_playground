@@ -5,7 +5,7 @@ export (int) var MAX_SPEED = 30
 export (float) var FRICTION = 0.1
 export (int) var GRAVITY = 400
 export (int) var JUMP_FORCE = 160
-export (int) var MAX_HITPOINTS = 2
+export (int) var MAX_HITPOINTS = 3
 
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var hurtBox: Hurtbox = $Hurtbox
@@ -15,8 +15,9 @@ onready var frontFloor: RayCast2D = $Senses/FrontFloor
 onready var rearFloor: RayCast2D = $Senses/RearFloor
 onready var frontWall: RayCast2D = $Senses/FrontWall
 onready var floorDetection: RayCast2D = $Senses/FloorDetection
+onready var playerDetection: Area2D = $Senses/PlayerDetection
 
-enum { IDLE, MOVE, HIT, DEATH  }
+enum { IDLE, MOVE, ATTACK, HIT, DEATH }
 
 var life = MAX_HITPOINTS
 var state = MOVE
@@ -34,8 +35,19 @@ func _physics_process(delta: float) -> void:
 	match state:
 		IDLE: _state_idle(input_vector, delta)
 		MOVE: _state_move(input_vector, delta)
+		ATTACK: _state_attack(input_vector, delta)
 		HIT: _state_hit(input_vector, delta)
 		DEATH: _state_death()
+
+
+func _state_attack(input: Vector2, delta: float):
+	animationPlayer.play("Attack")
+	
+	apply_gravity(delta)
+	apply_friction(input)
+	apply_horizontal_force(input, delta)
+	apply_flip_scale(input)
+	move()
 
 
 func _state_idle(input: Vector2, delta: float):
@@ -71,6 +83,11 @@ func _state_death():
 func _state_hit(input: Vector2, delta: float):
 	animationPlayer.play("Hit")
 	hitBox.deactive()
+	
+	input.x = (flip_direction * -1)
+	
+	if is_grounded():
+		motion.y = -JUMP_FORCE / 2
 	
 	apply_gravity(delta)
 	apply_friction(input)
@@ -155,6 +172,13 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			else: 
 				_change_state(DEATH)
 		
+		"Attack":
+			for area in playerDetection.get_overlapping_areas():
+				if area is Player:
+					_change_state(ATTACK)
+				else:
+					_change_state(MOVE)
+		
 		"Death":
 			queue_free()
 
@@ -167,3 +191,7 @@ func _on_Hurtbox_hit(damage):
 
 func _on_IdleTimer_timeout():
 	_change_state(MOVE)
+
+
+func _on_PlayerDetection_area_entered(area):
+	_change_state(ATTACK)

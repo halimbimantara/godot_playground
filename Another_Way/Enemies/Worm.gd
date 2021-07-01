@@ -27,6 +27,9 @@ var flip_direction: int = 1
 func _physics_process(delta: float) -> void:
 	var input_vector = direction
 	
+	if life <= 0:
+		_change_state(DEATH)
+	
 	if frontWall.is_colliding() or not floorSense.is_colliding():
 		if motion.x > 0:
 			direction = Vector2.LEFT
