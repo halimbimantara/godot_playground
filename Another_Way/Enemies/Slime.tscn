@@ -111,7 +111,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "Idle"
 length = 0.5
 tracks/0/type = "value"
@@ -163,8 +163,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Move"
+[sub_resource type="Animation" id=4]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -215,13 +214,13 @@ tracks/3/keys = {
 "values": [ Vector2( 0, -4 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 7, 6 )
-
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 7, 6 )
 
 [sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 7, 6 )
+
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 8, 7 )
 
 [node name="Slime" instance=ExtResource( 1 )]
@@ -236,20 +235,20 @@ hframes = 15
 [node name="AnimationPlayer" parent="." index="1"]
 anims/Death = SubResource( 1 )
 anims/Hit = SubResource( 2 )
-anims/Idle = SubResource( 7 )
-anims/Move = SubResource( 3 )
+anims/Idle = SubResource( 3 )
+anims/Move = SubResource( 4 )
 
 [node name="Collisor" parent="." index="2"]
 position = Vector2( 0, 2 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Collisor" parent="Hurtbox" index="0"]
 position = Vector2( 0, 2 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Collisor" parent="Hitbox" index="0"]
 position = Vector2( 0, 1 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="FrontFloor" parent="Senses" index="0"]
 position = Vector2( 6, 8 )
