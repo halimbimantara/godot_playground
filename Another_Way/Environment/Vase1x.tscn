@@ -4,9 +4,9 @@
 [ext_resource path="res://Box/Hurtbox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Environment/Vase.gd" type="Script" id=3]
 [ext_resource path="res://Effects/VaseBrokenEffect.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Environment/Mana.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Environment/Potion.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Environment/Coin.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Environment/Mana1x.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Environment/Potion1x.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Environment/Coin1x.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 4.5 )
@@ -14,8 +14,8 @@ extents = Vector2( 5, 4.5 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7, 6 )
 
-[node name="Vase" type="StaticBody2D"]
-collision_layer = 2
+[node name="Vase1x" type="StaticBody2D"]
+collision_layer = 0
 collision_mask = 0
 script = ExtResource( 3 )
 vaseBrokenEffect = ExtResource( 4 )
