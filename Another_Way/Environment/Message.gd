@@ -10,8 +10,10 @@ func _ready():
 
 
 func _on_ArrowMessage_body_entered(body):
-	animationPlayer.play("FadeIn")
+	if body is Player:
+		animationPlayer.play("FadeIn")
 
 
 func _on_ArrowMessage_body_exited(body):
-	animationPlayer.play("FadeOut")
+	if body is Player:
+		animationPlayer.play("FadeOut")
