@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/coin_pickup_anim_strip_6.png-70702582f22e0aa25ac47215456b49a8.stex"
+path="res://.import/coin_pickup_anim_strip_6.png-de8ef6001c1112076889a07ba561501d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/miscellaneous sprites/coin_pickup_anim_strip_6.png"
-dest_files=[ "res://.import/coin_pickup_anim_strip_6.png-70702582f22e0aa25ac47215456b49a8.stex" ]
+source_file="res://Assets/hud elements/coin_pickup_anim_strip_6.png"
+dest_files=[ "res://.import/coin_pickup_anim_strip_6.png-de8ef6001c1112076889a07ba561501d.stex" ]
 
 [params]
 

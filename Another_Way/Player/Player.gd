@@ -28,10 +28,13 @@ var state = MOVE
 var motion := Vector2.ZERO
 var flip_direction: int = 1
 var is_jumping := false
+var is_double_jump := false
 
 
 func _ready():
 	emit_signal("life_changed", life, MAX_HITPOINTS)
+	emit_signal("mana_changed", mana)
+	emit_signal("coin_changed", coins)
 
 
 func _physics_process(delta: float) -> void:
@@ -54,6 +57,13 @@ func _input(event: InputEvent):
 	if not state == HIT or not state == DEATH:
 		if event.is_action_pressed("jump"):
 			if not state == JUMP and not is_jumping:
+				apply_jump()
+				is_jumping = true
+				_change_state(JUMP)
+			elif mana > 0 and not is_double_jump:
+				change_mana(-1)
+				apply_jump()
+				is_double_jump = true
 				_change_state(JUMP)
 			
 		if event.is_action_pressed("attack"):
@@ -96,7 +106,7 @@ func _state_falling(input: Vector2, delta: float):
 	animationPlayer.play("Falling")
 	
 	if is_grounded():
-		is_jumping = false
+		reset_jump()
 		_change_state(MOVE)
 	
 	apply_gravity(delta)
@@ -108,11 +118,6 @@ func _state_falling(input: Vector2, delta: float):
 
 func _state_jump(input: Vector2, delta: float):
 	animationPlayer.play("Jump")
-	
-	if is_grounded() and not is_jumping:
-		create_dust_effect()
-		is_jumping = true
-		motion.y = -JUMP_FORCE
 	
 	if motion.y > 0:
 		_change_state(FALLING)
@@ -182,6 +187,10 @@ func apply_flip_scale(input: Vector2):
 
 func change_life(value):
 	life += value
+	
+	if life > MAX_HITPOINTS:
+		life = MAX_HITPOINTS
+	
 	emit_signal("life_changed", life, MAX_HITPOINTS)
 
 
@@ -199,6 +208,16 @@ func move():
 	motion = move_and_slide(motion, Vector2.UP)
 
 
+func apply_jump():
+	create_dust_effect()
+	motion.y = -JUMP_FORCE
+
+
+func reset_jump():
+	is_jumping = false
+	is_double_jump = false
+
+
 func create_dust_effect():
 	var instance = dustEffectScene.instance()
 	get_tree().current_scene.add_child(instance)
@@ -208,11 +227,11 @@ func create_dust_effect():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"Attack":
-			is_jumping = false
+			reset_jump()
 			_change_state(MOVE)
 		
 		"Hit":
-			is_jumping = false
+			reset_jump()
 			
 			if life > 0:
 				_change_state(MOVE)

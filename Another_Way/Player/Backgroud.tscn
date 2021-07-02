@@ -18,8 +18,8 @@ __meta__ = {
 }
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-offset = Vector2( 120, 60 )
-transform = Transform2D( 1, 0, 0, 1, 120, 60 )
+offset = Vector2( 120, -60 )
+transform = Transform2D( 1, 0, 0, 1, 120, -60 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2( 0.3, 0.8 )
