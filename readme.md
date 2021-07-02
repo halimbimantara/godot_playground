@@ -12,4 +12,4 @@ The published version should be somewhere on the [Itch.io](https://itch.io), it'
 
 ## Can you tell me something about the projects it self?
 
-Yeah, just PM me on the twitter or mail me.
+Yeah, just PM me on the twitter or mail me at shin.jef@gmail.com.
