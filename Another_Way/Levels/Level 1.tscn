@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/tiles and background_foreground/tileset.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Backgroud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Environment/CeilingTrap.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Environment/Door.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Environment/DoorSense.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/miscellaneous sprites/bigflowers_props.png" type="Texture" id=15]
 [ext_resource path="res://Assets/miscellaneous sprites/flowers_props.png" type="Texture" id=16]
 [ext_resource path="res://Assets/miscellaneous sprites/root_props.png" type="Texture" id=17]
@@ -665,6 +667,9 @@ position = Vector2( 168, 80 )
 [node name="Spike1x" parent="Enrironment" instance=ExtResource( 3 )]
 position = Vector2( 168, 136 )
 
+[node name="Door" parent="Enrironment" instance=ExtResource( 7 )]
+position = Vector2( 104, 104 )
+
 [node name="Hazards" type="Node2D" parent="."]
 
 [node name="Pickable" type="Node2D" parent="."]
@@ -672,12 +677,16 @@ position = Vector2( -88, 88 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
+[node name="DoorSense" parent="." instance=ExtResource( 8 )]
+position = Vector2( 56, 128 )
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -40, -8 )
 
 [node name="CamFixed" parent="Player" index="3"]
 remote_path = NodePath("../../Camera2D")
 
+[connection signal="entered_door_sense" from="DoorSense" to="Enrironment/Door" method="open_door"]
 [connection signal="coin_changed" from="Player" to="UI" method="_on_Player_coin_changed"]
 [connection signal="life_changed" from="Player" to="UI" method="_on_Player_life_changed"]
 [connection signal="mana_changed" from="Player" to="UI" method="_on_Player_mana_changed"]
