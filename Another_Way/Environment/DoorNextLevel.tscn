@@ -75,6 +75,7 @@ shape = SubResource( 1 )
 [node name="Node2D" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, 10 )
+z_index = 100
 
 [node name="Label" type="Label" parent="Node2D"]
 margin_left = -100.0

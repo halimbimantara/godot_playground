@@ -1,12 +1,13 @@
 extends Area2D
 
-export(String) var message := ""
+export(String) var lineOne := ""
+export(String) var lineTwo := ""
 
 onready var label: Label = $Node2D/Label
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
 func _ready():
-	label.text = message
+	label.text = lineOne + "\n" + lineTwo
 
 
 func _on_ArrowMessage_body_entered(body):

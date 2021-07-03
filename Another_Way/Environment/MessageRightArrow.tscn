@@ -15,7 +15,7 @@ font_data = ExtResource( 2 )
 resource_name = "FadeIn"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D:position")
+tracks/0/path = NodePath("../MessageArrowRight/Node2D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -27,7 +27,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 8 ), Vector2( 0, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D:modulate")
+tracks/1/path = NodePath("../MessageArrowRight/Node2D:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -43,7 +43,7 @@ tracks/1/keys = {
 resource_name = "FadeOut"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Node2D:position")
+tracks/0/path = NodePath("../MessageArrowRight/Node2D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -55,7 +55,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 16 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Node2D:modulate")
+tracks/1/path = NodePath("../MessageArrowRight/Node2D:modulate")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -68,6 +68,7 @@ tracks/1/keys = {
 }
 
 [node name="MessageArrowRight" type="Area2D"]
+collision_layer = 2
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -79,7 +80,8 @@ shape = SubResource( 1 )
 
 [node name="Node2D" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 0, 16 )
+position = Vector2( 0, 8 )
+z_index = 100
 
 [node name="Label" type="Label" parent="Node2D"]
 margin_left = -100.0
