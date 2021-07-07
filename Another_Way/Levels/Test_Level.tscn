@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/tiles and background_foreground/tileset.png" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Assets/miscellaneous sprites/root_props.png" type="Texture" id=17]
 [ext_resource path="res://Assets/miscellaneous sprites/drygrass_props.png" type="Texture" id=18]
 [ext_resource path="res://Assets/miscellaneous sprites/grass_props.png" type="Texture" id=19]
-[ext_resource path="res://Environment/Message.tscn" type="PackedScene" id=20]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -657,26 +656,6 @@ collision_mask = 0
 format = 1
 
 [node name="Enrironment" type="Node2D" parent="."]
-
-[node name="Message" parent="Enrironment" instance=ExtResource( 20 )]
-position = Vector2( 56, -8 )
-lineOne = "Mensagem 1"
-lineTwo = "Mensagem a"
-
-[node name="Message2" parent="Enrironment" instance=ExtResource( 20 )]
-position = Vector2( -40, -8 )
-lineOne = "Mensagem 2"
-lineTwo = "Mensagem b"
-
-[node name="Message3" parent="Enrironment" instance=ExtResource( 20 )]
-position = Vector2( 120, -8 )
-lineOne = "Menagem 3"
-lineTwo = "Mensagem c"
-
-[node name="Message4" parent="Enrironment" instance=ExtResource( 20 )]
-position = Vector2( 176, -8 )
-lineOne = "Mensagm 4"
-lineTwo = "Mensagem d"
 
 [node name="Hazards" type="Node2D" parent="."]
 
