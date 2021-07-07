@@ -1,7 +1,8 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/tiles and background_foreground/tileset.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/GoblinBomber.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Backgroud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/miscellaneous sprites/bigflowers_props.png" type="Texture" id=15]
@@ -669,6 +670,9 @@ position = Vector2( 0, -8 )
 
 [node name="CamFixed" parent="Player" index="3"]
 remote_path = NodePath("../../Camera2D")
+
+[node name="GoblinBomber" parent="." instance=ExtResource( 3 )]
+position = Vector2( 120, -8 )
 
 [connection signal="coin_changed" from="Player" to="UI" method="_on_Player_coin_changed"]
 [connection signal="life_changed" from="Player" to="UI" method="_on_Player_life_changed"]
