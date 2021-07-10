@@ -11,7 +11,7 @@ func _ready():
 
 
 func spawn_item():
-	var list = [[5, coinScene], [7, manaScene], [10, potionScene]]
+	var list = [[7, coinScene], [9, manaScene], [10, potionScene]]
 	var value = rand_range(0, 10)
 	
 	for item in list:
