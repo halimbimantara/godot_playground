@@ -17,6 +17,7 @@ onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 onready var dustEffectPosition: Position2D = $DustEffectPosition
 onready var frontFloor: RayCast2D = $Senses/FrontFloor
 onready var rearFloor: RayCast2D = $Senses/RearFloor
+onready var coyoteTimer: Timer = $Senses/CoyoteTimer
 
 enum { MOVE, JUMP, FALLING, ATTACK, HIT, DEATH }
 
@@ -55,15 +56,21 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent):
 	if not state == HIT or not state == DEATH:
-		if event.is_action_pressed("jump"):
-			if not state == JUMP and not is_jumping:
-				apply_jump()
+		if event.is_action_pressed("jump") and not is_jumping:
+			if state == FALLING and coyoteTimer.time_left > 0:
 				is_jumping = true
-				_change_state(JUMP)
-			elif mana > 0 and not is_double_jump:
-				change_mana(-1)
 				apply_jump()
+				_change_state(JUMP)
+			
+			if not state == JUMP and not state == FALLING:
+				is_jumping = true
+				apply_jump()
+				_change_state(JUMP)
+			
+			elif mana > 0 and not is_double_jump:
 				is_double_jump = true
+				apply_jump()
+				change_mana(-1)
 				_change_state(JUMP)
 			
 		if event.is_action_pressed("attack"):
@@ -147,6 +154,10 @@ func _state_move(input: Vector2, delta: float):
 
 
 func _change_state(new_state):
+	match new_state:
+		FALLING:
+			coyoteTimer.start()
+	
 	state = new_state
 
 
@@ -227,7 +238,6 @@ func create_dust_effect():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	match anim_name:
 		"Attack":
-			reset_jump()
 			_change_state(MOVE)
 		
 		"Hit":
