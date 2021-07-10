@@ -1,11 +1,9 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/tiles and background_foreground/tileset.png" type="Texture" id=2]
-[ext_resource path="res://Environment/DoorSense.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Backgroud.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Environment/Door.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/miscellaneous sprites/bigflowers_props.png" type="Texture" id=15]
 [ext_resource path="res://Assets/miscellaneous sprites/flowers_props.png" type="Texture" id=16]
 [ext_resource path="res://Assets/miscellaneous sprites/root_props.png" type="Texture" id=17]
@@ -658,12 +656,6 @@ collision_mask = 0
 format = 1
 
 [node name="Enrironment" type="Node2D" parent="."]
-
-[node name="DoorSense" parent="Enrironment" instance=ExtResource( 3 )]
-position = Vector2( 48, 0 )
-
-[node name="Door" parent="Enrironment" instance=ExtResource( 6 )]
-position = Vector2( 88, -24 )
 
 [node name="Hazards" type="Node2D" parent="."]
 

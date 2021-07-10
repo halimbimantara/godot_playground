@@ -26,7 +26,7 @@
 [ext_resource path="res://Environment/Vase2x.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Environment/Coin2x.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Levels/Level 1.tscn" type="PackedScene" id=26]
-[ext_resource path="res://Environment/DoorSense.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Environment/Button.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Environment/Door.tscn" type="PackedScene" id=28]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -719,21 +719,21 @@ position = Vector2( 1752, -40 )
 lineOne = "Mana allows you"
 lineTwo = "to dash as well"
 
-[node name="MessageArrowRight2" parent="Enrironment" instance=ExtResource( 14 )]
-position = Vector2( 2016, -8 )
-lineOne = "You can combine"
-lineTwo = "double jump and dash"
-
 [node name="Door" parent="Enrironment" instance=ExtResource( 28 )]
 position = Vector2( 2392, -56 )
-
-[node name="DoorSense" parent="Enrironment" instance=ExtResource( 27 )]
-position = Vector2( 2328, -16 )
 
 [node name="Message7" parent="Enrironment" instance=ExtResource( 20 )]
 position = Vector2( 2280, -24 )
 lineOne = "Buttons affect"
 lineTwo = "the environment"
+
+[node name="DoorSense" parent="Enrironment" instance=ExtResource( 27 )]
+position = Vector2( 2328, -16 )
+
+[node name="Message8" parent="Enrironment" instance=ExtResource( 20 )]
+position = Vector2( 2024, -8 )
+lineOne = "You can combine"
+lineTwo = "double jump and dash"
 
 [node name="Hazards" type="Node2D" parent="."]
 
@@ -895,6 +895,7 @@ position = Vector2( -40, -8 )
 [node name="CamFixed" parent="Player" index="3"]
 remote_path = NodePath("../../Camera2D")
 
+[connection signal="pressed_in" from="Enrironment/DoorSense" to="Enrironment/Door" method="open_door"]
 [connection signal="coin_changed" from="Player" to="UI" method="_on_Player_coin_changed"]
 [connection signal="life_changed" from="Player" to="UI" method="_on_Player_life_changed"]
 [connection signal="mana_changed" from="Player" to="UI" method="_on_Player_mana_changed"]
