@@ -6,7 +6,7 @@ export (float) var FRICTION = 0.1
 export (int) var GRAVITY = 400
 export (int) var JUMP_FORCE = 160
 export (int) var MAX_HITPOINTS = 2
-
+export (String, "Left", "Right") var initialSide := "Left" 
 export (PackedScene) var bombScene
 
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
@@ -27,7 +27,8 @@ var flip_direction: int = 1
 var player: Player = null
 
 func _ready() -> void:
-	apply_flip_scale(Vector2.LEFT)
+	if initialSide == "Left":
+		apply_flip_scale(Vector2.LEFT)
 
 
 func _physics_process(delta: float) -> void:
