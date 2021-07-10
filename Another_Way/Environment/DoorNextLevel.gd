@@ -6,11 +6,21 @@ export(String) var message
 onready var label: Label = $Node2D/Label
 onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
-
 func _input(event):
 	if event.is_action_pressed("jump") and is_player_in():
+		var playerData = get_player_data()
+		LevelManager.save_player_data(playerData)
 		change_level()
 
+
+func get_player_data():
+	var player = get_tree().current_scene.find_node("Player")
+	
+	return {
+		"life": player.life,
+		"mana": player.mana,
+		"coins": player.coins,
+	}
 
 func is_player_in() -> bool:
 	for area in get_overlapping_bodies():

@@ -42,6 +42,10 @@ config/name="Another Way"
 run/main_scene="res://Levels/Test_Level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+LevelManager="*res://Levels/LevelManager.gd"
+
 [display]
 
 window/size/width=240

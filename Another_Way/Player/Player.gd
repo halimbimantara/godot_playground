@@ -39,6 +39,15 @@ var is_double_jump := false
 var is_dashing := false
 
 func _ready():
+	var player = LevelManager.get_player_data()
+	
+	if not player.life == null:
+		life = player.life
+	if not player.coins == null:
+		coins = player.coins
+	if not player.mana == null:
+		mana = player.mana
+	
 	emit_signal("life_changed", life, MAX_HITPOINTS)
 	emit_signal("mana_changed", mana)
 	emit_signal("coin_changed", coins)
