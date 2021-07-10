@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Environment/DoorSense.gd" type="Script" id=1]
+[ext_resource path="res://Environment/Button.gd" type="Script" id=1]
 [ext_resource path="res://Assets/miscellaneous sprites/buttom.png" type="Texture" id=2]
 [ext_resource path="res://Assets/miscellaneous sprites/buttom_pressed.png" type="Texture" id=3]
 
