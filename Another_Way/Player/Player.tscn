@@ -78,7 +78,7 @@ tracks/4/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=2]
 resource_name = "Dash"
 length = 0.1
 loop = true
@@ -131,8 +131,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Death"
+[sub_resource type="Animation" id=3]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -183,7 +182,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -235,7 +234,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
@@ -286,7 +285,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -338,7 +337,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -390,7 +389,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -442,17 +441,17 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 5, 7 )
 
-[sub_resource type="CapsuleShape2D" id=13]
+[sub_resource type="CapsuleShape2D" id=10]
 radius = 6.0
 height = 4.0
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 4, 7 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 10, 6 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -466,28 +465,27 @@ texture = ExtResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack = SubResource( 1 )
-anims/Dash = SubResource( 12 )
-anims/Death = SubResource( 2 )
-anims/Falling = SubResource( 3 )
-anims/Hit = SubResource( 4 )
-anims/Idle = SubResource( 5 )
-anims/Jump = SubResource( 6 )
-anims/Run = SubResource( 7 )
+anims/Dash = SubResource( 2 )
+anims/Death = SubResource( 3 )
+anims/Falling = SubResource( 4 )
+anims/Hit = SubResource( 5 )
+anims/Idle = SubResource( 6 )
+anims/Jump = SubResource( 7 )
+anims/Run = SubResource( 8 )
 
 [node name="Collisor" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 1 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="CamFixed" type="RemoteTransform2D" parent="."]
 
 [node name="PickableRange" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickableRange"]
 position = Vector2( -1, 1 )
-shape = SubResource( 13 )
+shape = SubResource( 10 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 9 )]
 visible = false
@@ -495,7 +493,7 @@ collision_mask = 0
 
 [node name="Collisor" parent="Hurtbox" index="0"]
 position = Vector2( -1, 1 )
-shape = SubResource( 14 )
+shape = SubResource( 11 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 7 )]
 visible = false
@@ -504,8 +502,7 @@ collision_mask = 10
 
 [node name="Collisor" parent="Hitbox" index="0"]
 position = Vector2( 15, 2 )
-shape = SubResource( 11 )
-disabled = true
+shape = SubResource( 12 )
 
 [node name="Senses" type="Node2D" parent="."]
 
