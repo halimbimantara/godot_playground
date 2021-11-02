@@ -109,6 +109,7 @@ func _state_death(input: Vector2):
 func _state_hit(input: Vector2, delta: float):
 	animationPlayer.play("Hit")
 	input.x = (flip_direction * -1)
+	reset_jumping()
 	
 	if is_grounded():
 		motion.y = -JUMP_FORCE / 2
@@ -277,9 +278,13 @@ func clean_state_flags():
 		_change_state(DEATH)
 	
 	if is_grounded():
-		is_jumping = false
-		is_double_jump = false
-		is_dashing = false
+		reset_jumping()
+
+
+func reset_jumping():
+	is_jumping = false
+	is_double_jump = false
+	is_dashing = false
 
 
 func create_dust_effect():

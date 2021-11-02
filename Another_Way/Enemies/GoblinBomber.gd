@@ -5,7 +5,7 @@ export (int) var MAX_SPEED = 30
 export (float) var FRICTION = 0.1
 export (int) var GRAVITY = 400
 export (int) var JUMP_FORCE = 160
-export (int) var MAX_HITPOINTS = 2
+export (int) var MAX_HITPOINTS = 1
 export (String, "Left", "Right") var initialSide := "Left" 
 export (PackedScene) var bombScene
 
