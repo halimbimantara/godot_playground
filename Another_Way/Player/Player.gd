@@ -24,6 +24,7 @@ onready var bottomDashSense: RayCast2D = $Senses/BottomDash
 onready var coyoteTimer: Timer = $Senses/CoyoteTimer
 onready var dashTimer: Timer = $Senses/DashTimer
 onready var dashTimerEffect: Timer = $Senses/DashTimerEffect
+onready var stateList: Node2D = $StatesList
 
 enum { MOVE, JUMP, FALLING, DASH, ATTACK, HIT, DEATH }
 

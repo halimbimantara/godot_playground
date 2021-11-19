@@ -503,6 +503,8 @@ position = Vector2( 15, 2 )
 shape = SubResource( 12 )
 disabled = true
 
+[node name="StatesList" type="Node2D" parent="."]
+
 [node name="Senses" type="Node2D" parent="."]
 
 [node name="DashTimerEffect" type="Timer" parent="Senses"]

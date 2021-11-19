@@ -1,0 +1,7 @@
+102b54792f6b2ef812636a2bdaeb9d34
+::res://::1635889649
+Character.tscn::PackedScene::3922010561633469998::1635889641::0::1::::<><>::res://Player.gd<>uid://vy1pr11t1rpy
+default_env.tres::Environment::6554601508699453938::1635889649::0::1::::<><>::
+icon.png::StreamTexture2D::1525117145486236954::1635889099::1635889473::1::::<><>::
+Player.gd::GDScript::-1::1635889575::0::1::::Character<>CharacterBody2D<>::
+World.tscn::PackedScene::-1::1635889649::0::1::::<><>::res://Character.tscn
