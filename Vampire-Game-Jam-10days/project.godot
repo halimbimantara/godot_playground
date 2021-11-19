@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Vampire-Game-Jam-10days"
-run/main_scene="res://levels/Level_1.tscn"
+run/main_scene="res://levels/StartLevel.tscn"
 config/icon="res://icon.png"
 
 [display]
