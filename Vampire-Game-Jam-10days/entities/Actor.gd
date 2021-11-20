@@ -1,14 +1,16 @@
 extends KinematicBody2D
 class_name Actor
 
-export (int) var SPEED = 120
-export (int) var JUMP_FORCE = 180
-export (int) var GRAVITY = 400
-export (float, 0, 1.0) var FRICTION = 0.1
-export (float, 0, 1.0) var ACCELERATION = 0.25
+export (int) var HIT_POINT := 1
+export (int) var SPEED := 100
+export (int) var JUMP_FORCE := 200
+export (int) var GRAVITY := 600
+export (float, 0, 1.0) var FRICTION := 0.2
+export (float, 0, 1.0) var ACCELERATION := 0.3
 
 var motion = Vector2.ZERO
 var input = Vector2.ZERO
+
 
 func _physics_process(delta:float)->void:
 	_set_input()
@@ -24,7 +26,7 @@ func _set_input():
 
 func _apply_friction():
 	if input.x != 0:
-		if is_on_floor(): 
+		if is_on_floor():
 			motion.x = lerp(motion.x, input.x * SPEED, ACCELERATION)
 		else:
 			motion.x = lerp(motion.x, input.x * (SPEED * 0.75), ACCELERATION)

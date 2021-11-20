@@ -9,6 +9,11 @@ extents = Vector2( 13, 13 )
 
 [node name="Player" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+HIT_POINT = 5
+SPEED = 200
+JUMP_FORCE = 250
+FRICTION = 0.3
+ACCELERATION = 0.4
 
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 0.4, 0.4 )
