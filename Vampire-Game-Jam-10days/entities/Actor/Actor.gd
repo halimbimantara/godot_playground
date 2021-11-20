@@ -63,6 +63,7 @@ func _apply_move()->void:
 func _die() -> void:
 	queue_free()
 
+
 func change_health(amount: int) -> void:
 	HIT_POINT += amount
 	

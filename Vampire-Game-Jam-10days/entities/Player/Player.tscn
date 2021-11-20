@@ -39,6 +39,11 @@ shape = SubResource( 2 )
 [node name="Timer" type="Timer" parent="DrainArea" index="1"]
 one_shot = true
 
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
+current = true
+smoothing_enabled = true
+smoothing_speed = 2.0
+
 [connection signal="body_entered" from="DrainArea" to="DrainArea" method="_on_DrainArea_body_entered"]
 [connection signal="hit_body" from="DrainArea" to="." method="_on_DrainArea_hit_body"]
 [connection signal="timeout" from="DrainArea/Timer" to="DrainArea" method="_on_Timer_timeout"]
