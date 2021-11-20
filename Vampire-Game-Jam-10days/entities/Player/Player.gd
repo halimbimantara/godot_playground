@@ -1,8 +1,12 @@
 extends Actor
 
+export (int, 1, 5, 1) var drain_damage := 1
 
-func _physics_process(delta: float) -> void:
-	pass
+onready var drainArea = $DrainArea
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("drain"):
+		drain_life()
 
 func _set_input():
 	input = Vector2.ZERO
@@ -25,4 +29,10 @@ func _apply_gravity(delta: float)->void:
 
 
 func drain_life()->void:
-	pass
+	if Input.is_action_just_pressed("drain"):
+		drainArea.trigger_enable()
+
+
+func _on_DrainArea_hit_body(actor: Actor) -> void:
+	if actor is Actor: 
+		actor.change_health(-drain_damage)
