@@ -47,6 +47,7 @@ func _check_flip():
 
 
 func _die() -> void:
+	# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
 
