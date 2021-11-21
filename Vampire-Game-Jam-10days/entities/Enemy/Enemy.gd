@@ -21,8 +21,13 @@ func calculate_ground_speed() -> float:
 
 
 func _set_input():
+	if not runCooldown.is_stopped():
+		input.x = check_run_direction()
+		return 
+	
 	if frontRay.is_colliding() or not groudRay.is_colliding():
 		input.x *= -1
+		return
 
 
 func check_run_direction()->int:
