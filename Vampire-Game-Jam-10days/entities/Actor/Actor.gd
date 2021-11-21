@@ -40,11 +40,19 @@ func _check_flip():
 func _apply_friction():
 	if input.x != 0:
 		if is_on_floor():
-			motion.x = lerp(motion.x, input.x * SPEED, ACCELERATION)
+			motion.x = calculate_ground_speed()
 		else:
-			motion.x = lerp(motion.x, input.x * (SPEED * 0.75), ACCELERATION)
+			motion.x = calculate_air_speed()
 	else:
 		motion.x = lerp(motion.x, 0, FRICTION)
+
+
+func calculate_ground_speed() -> float:
+	return lerp(motion.x, input.x * SPEED, ACCELERATION)
+
+
+func calculate_air_speed() -> float:
+	return lerp(motion.x, input.x * (SPEED * 0.75), ACCELERATION)
 
 
 func _apply_jump()->void:
