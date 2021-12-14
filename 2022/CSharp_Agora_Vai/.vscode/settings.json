@@ -1,0 +1,8 @@
+{
+  "omnisharp.useGlobalMono": "always",
+  "editor.tabSize": 2,
+  "cSpell.words": [
+    "Lerp",
+    "Mathf"
+  ]
+}
