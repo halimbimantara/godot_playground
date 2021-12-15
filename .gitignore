@@ -8,6 +8,10 @@ export_presets.cfg
 bin/
 lib/
 
+# Build Path
+build/
+*build
+
 # Mono-specific ignores
 .mono/
 data_*/
